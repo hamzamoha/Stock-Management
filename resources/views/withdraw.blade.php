@@ -209,15 +209,18 @@
                 <div>
                     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 dark:bg-slate-700" name="add_product"
                         novalidate autocomplete="off" onsubmit="return false;">
-                        <h1 class="text-3xl font-bold my-2 text-gray-700 dark:text-gray-100">Add Stock</h1>
+                        <h1 class="text-3xl font-bold my-2 text-gray-700 dark:text-gray-100">Withdraw Stock</h1>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2"
-                                for="product_name">
-                                Product Name
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                name="product_name" type="text" placeholder="Product Name">
+                            <label for="countries"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Product</label>
+                            <select id="countries"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Choose a Product</option>
+                                <option value="P1">Product 1</option>
+                                <option value="P2">Product 2</option>
+                                <option value="P3">Product 3</option>
+                                <option value="P4">Product 4</option>
+                            </select>
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -265,115 +268,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="p-3 bg-slate-100 dark:bg-slate-700 rounded">
-                    <div class="bg-gray-100 shadow dark:bg-gray-800">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead>
-                                <tr class="bg-gray-50 dark:bg-gray-900">
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Stock ID</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Product Name</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Quantity</th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Price</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                <tr>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        001</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        Product A</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">10
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        $50.00</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        002</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        Product B</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">20
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        $30.00</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">
-                                        003</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        Product C</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">5
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                        $80.00</td>
-                                </tr>
-                                <!-- Add more rows for each stock in your inventory -->
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example" class="text-center py-2">
-                            <ul class="inline-flex -space-x-px">
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page"
-                                        class="block px-3 py-2 leading-tight text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="fixed bottom-3 right-3">
-                    <button data-micromodal-trigger="modal-1" id="addStockButton" title="Add Stock"
-                        class="shadow-[0_0_12px_2px_#22c55e] dark:shadow-[0_0_12px_2px_#15803d] flex justify-center items-center text-white rounded-full text-center w-12 h-12 bg-green-500 transition duration-300 ease-in-out hover:rotate-180 hover:bg-emerald-500 dark:hover:bg-emerald-700 dark:bg-green-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            class="bi bi-plus" viewBox="0 0 16 16">
-                            <path
-                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </button>
-                </div>
             </div>
         </main>
 
     </div>
     <script>
-        const add_product_form = document.querySelector("form[name='add_product']");
-        const add_product_cancel_button = add_product_form.querySelector("button[type='reset']");
-        const add_product_submit_button = add_product_form.querySelector("button[type='submit']");
-
         const sidebar = document.querySelector("aside");
         const maxSidebar = document.querySelector(".max")
         const miniSidebar = document.querySelector(".mini")
@@ -425,18 +324,6 @@
                 content.classList.add("ml-12")
             }
         }
-
-        add_product_cancel_button.addEventListener("click", function(e) {
-            add_product_form.parentElement.classList.add("hidden");
-        });
-
-        document.getElementById("addStockButton").addEventListener("click", function(e) {
-            add_product_form.parentElement.classList.remove("hidden");
-        })
-
-        add_product_submit_button.addEventListener("click", function(e) {
-            //
-        })
     </script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

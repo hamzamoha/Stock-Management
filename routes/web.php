@@ -24,3 +24,7 @@ Route::get('/dashboard', function () {
 Route::get('/stock', function () {
     return view('stock');
 });
+
+Route::get('/withdraw', function () {
+    return view('withdraw');
+});
