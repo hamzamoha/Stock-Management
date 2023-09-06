@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +22,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/stock', function () {
-    return view('stock');
-});
+Route::get('/stock', [StockController::class, 'index']);
 
-Route::get('/withdraw', function () {
-    return view('withdraw');
-});
+Route::post('/stock', [StockController::class, 'store']);
+
+Route::get('/stock/search', [StockController::class, 'search']);
+
+Route::get('/withdraw', [StockController::class, 'withdraw_index']);
+
+Route::post('/withdraw', [StockController::class, 'withdraw']);
