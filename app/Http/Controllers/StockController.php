@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
+use App\Models\Receipt;
+use App\Models\ReceiptHistory;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -50,6 +53,8 @@ class StockController extends Controller
             $stock->sell_price = $request->sell_price;
         }
         if ($stock->save()) {
+            $history = new History($stock->name, 0, $stock->buy_price, $stock->quantity, "in");
+            $history->save();
             return redirect('/stock');
         } else return back()->with('error', 'An error accured while saving your data')->withInput();
     }
@@ -96,32 +101,47 @@ class StockController extends Controller
     {
         $request = $request->all();
         $backup = array();
+        $history = array();
+        $total = 0;
         $error = 0;
         foreach ($request as $foxit) {
             $stock = Stock::find($foxit["id"]);
             if ($stock && $stock->name == $foxit["name"] && $stock->buy_price == $foxit["buy_price"] && intval($stock->quantity) >= intval($foxit["quantity"])) {
                 array_push($backup, $stock);
                 $stock->quantity = intval($stock->quantity) - intval($foxit["quantity"]);
-                if(!$stock->save()) {
+                if (!$stock->save()) {
                     $error = 1;
                     break;
+                } else {
+                    $total += floatval($foxit["total_price"]);
+                    array_push(
+                        $history,
+                        new History($stock->name, $stock->sell_price, $stock->buy_price, $foxit['quantity'], "out")
+                    );
                 }
-            }
-            else {
+            } else {
                 $error = 2;
             }
         }
-        if($error != 0){
+        if ($error != 0) {
             foreach ($backup as $backup_rec) {
                 $backup_rec->save();
             }
             return response()->json([
                 "error" => "Something went wrong ! Error Code $error"
             ]);
+        } else {
+            $receipt = new Receipt($total);
+            $receipt->save();
+            foreach ($history as $history_rec) {
+                $history_rec->save();
+                $receipt_history = new ReceiptHistory($receipt->id, $history_rec->id);
+                $receipt_history->save();
+            }
+            return response()->json([
+                "success" => "Data saved successfully"
+            ]);
         }
-        else return response()->json([
-            "success" => "Data saved successfully"
-        ]);
     }
 
     public function search(Request $request)
