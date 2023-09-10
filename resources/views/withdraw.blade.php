@@ -127,7 +127,7 @@
                             </button>
                             <button
                                 class="bg-teal-700 hover:bg-teal-600 dark:bg-teal-800 dark:hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="button" onclick="send_receipt();">
+                                type="button" onclick="go_to_client();">
                                 Withdraw
                             </button>
                             <button
@@ -326,6 +326,10 @@
         }
         document.withdraw_product['price'].addEventListener("change", total_price_calculate);
         document.withdraw_product['quantity'].addEventListener("change", total_price_calculate);
+        //go to client
+        function go_to_client() {
+            //
+        }
         //add to receipt
         function combine_receipt_element(product, index) {
             receipt[index].quantity = Number(receipt[index].quantity) + Number(product
@@ -441,8 +445,24 @@
                                 </span>
                             </div>
                             ` + innerHTML;
-                    }
-                    else {
+                    } else if (res.message) {
+                        let innerHTML = document.getElementById("content").innerHTML;
+                        document.getElementById("content").innerHTML =
+                            `
+                            <div class="error-alert bg-green-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Dang it!</strong>
+                                <span class="block sm:inline">${res.message}</span>
+                                <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.closest('.error-alert').remove()">
+                                    <svg class="fill-current h-6 w-6 text-green-500" role="button"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <title>Close</title>
+                                        <path
+                                            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                                    </svg>
+                                </span>
+                            </div>
+                            ` + innerHTML;
+                    } else if (res.success) {
                         let innerHTML = document.getElementById("content").innerHTML;
                         document.getElementById("content").innerHTML =
                             `
@@ -459,6 +479,9 @@
                                 </span>
                             </div>
                             ` + innerHTML;
+                        setTimeout(() => {
+                            window.location.href = "/withdraw/" + res.receipt_id;
+                        }, 1500);
                     }
                 })
         }

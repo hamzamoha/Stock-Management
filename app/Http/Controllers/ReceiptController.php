@@ -12,7 +12,8 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        //
+        $receipts = Receipt::paginate(50);
+        return view("receipt.index")->with("receipts", $receipts);
     }
 
     /**
@@ -42,9 +43,17 @@ class ReceiptController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Receipt $receipt)
+    public function edit()
     {
         //
+    }
+
+    public function pay(int $receipt_id) {
+        $receipt = Receipt::find($receipt_id);
+        if($receipt){
+            return view("receipt.pay")->with("receipt", $receipt);
+        }
+        else return view("recipt.index");
     }
 
     /**

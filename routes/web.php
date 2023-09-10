@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,7 @@ Route::get('/stock/search', [StockController::class, 'search']);
 Route::get('/withdraw', [StockController::class, 'withdraw_index']);
 
 Route::post('/withdraw', [StockController::class, 'withdraw']);
+
+Route::get('/receipts', [ReceiptController::class, 'index']);
+
+Route::get('/withdraw/{receipt_id}', [ReceiptController::class, 'pay']);

@@ -8,6 +8,8 @@ use App\Models\ReceiptHistory;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class StockController extends Controller
 {
     /**
@@ -139,7 +141,8 @@ class StockController extends Controller
                 $receipt_history->save();
             }
             return response()->json([
-                "success" => "Data saved successfully"
+                "success" => "Data saved successfully",
+                "receipt_id" => $receipt->id
             ]);
         }
     }
