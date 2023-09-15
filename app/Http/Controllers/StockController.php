@@ -17,7 +17,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::all();
+        $stocks = Stock::paginate(10);
         return view('stock')->with('stocks', $stocks);
     }
 
@@ -134,6 +134,7 @@ class StockController extends Controller
             ]);
         } else {
             $receipt = new Receipt($total);
+            $receipt->status = "processing";
             $receipt->save();
             foreach ($history as $history_rec) {
                 $history_rec->save();

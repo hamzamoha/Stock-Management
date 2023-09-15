@@ -2,26 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- Styles -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
-                '(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    @include('head')
 </head>
 
 <body class="antialiased">
@@ -70,8 +52,8 @@
                             </svg>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl">1,257</p>
-                            <p>Visitors</p>
+                            <p class="text-2xl">{{$clients_count}}</p>
+                            <p>Clients</p>
                         </div>
                     </div>
                     <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
@@ -81,7 +63,7 @@
                             </svg>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl">557</p>
+                            <p class="text-2xl">{{$orders_count}}</p>
                             <p>Orders</p>
                         </div>
                     </div>
@@ -92,7 +74,7 @@
                             </svg>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl">$11,257</p>
+                            <p class="text-2xl">{{env("CURRENCY_SYMBOL", "$") . number_format($sales_total)}}</p>
                             <p>Sales</p>
                         </div>
                     </div>
@@ -104,8 +86,8 @@
                             </svg>
                         </div>
                         <div class="text-right">
-                            <p class="text-2xl">$75,257</p>
-                            <p>Balances</p>
+                            <p class="text-2xl">{{env("CURRENCY_SYMBOL", "$") . number_format($profit_total)}}</p>
+                            <p>Profit</p>
                         </div>
                     </div>
                 </div>

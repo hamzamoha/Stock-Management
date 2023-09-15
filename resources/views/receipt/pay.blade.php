@@ -2,28 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- Styles -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"
-        integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
-                '(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    @include('head')
 </head>
 
 <body class="antialiased">
@@ -75,8 +55,8 @@
                     @foreach ($errors->all() as $error)
                         <div class="error-alert bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
                             role="alert">
-                            <strong class="font-bold">Dang it!</strong>
-                            <span class="block sm:inline">Something seriously bad happened. {{ $error }}</span>
+                            <strong class="font-bold">Dang it! </strong>
+                            <span class="block sm:inline"> {{ $error }}</span>
                             <span class="absolute top-0 bottom-0 right-0 px-4 py-3"
                                 onclick="this.closest('.error-alert').remove()">
                                 <svg class="fill-current h-6 w-6 text-red-500" role="button"
@@ -91,8 +71,10 @@
                 @endif
                 <div class="grid grid-cols-3 gap-2">
                     <div class="col-span-2">
-                        <form class="shadow-md rounded p-5 mb-4 bg-slate-100 dark:bg-slate-700"
-                            name="withdraw_product" novalidate autocomplete="off" onsubmit="return false;">
+                        <form class="shadow-md rounded p-5 mb-4 bg-slate-100 dark:bg-slate-700" name="pay_check"
+                            autocomplete="off" onsubmit="return submit_form()" method="POST">
+                            @csrf
+                            <input type="hidden" name="regular_id" value="">
                             <h1 class="text-3xl font-bold my-2 text-gray-700 dark:text-gray-100">Client</h1>
                             <div class="grid gap-4 md:grid-cols-3 my-5">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
@@ -102,9 +84,8 @@
                                         class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Guest</label>
                                 </div>
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                                    <input id="client_regular" type="radio" value="regular"
-                                        name="client_option"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input id="client_regular" type="radio" value="regular" name="client_option"
+                                        class="w-4 h-4 text-blue-600    bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <label for="client_regular"
                                         class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Regular</label>
                                 </div>
@@ -115,29 +96,146 @@
                                         class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">New</label>
                                 </div>
                             </div>
-                            //
-                            <div class="flex items-center justify-between">
-                                <button
-                                    class="bg-cyan-700 hover:bg-cyan-600 dark:bg-cyan-800 dark:hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="button" onclick="add_to_receipt();">
-                                    Add to Receipt
-                                </button>
+                            <div id="client_section" class="my-5">
+                                <div id="client_section_guest">
+                                    <!--label for="guest_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</?label>
+                                    <input id="guest_name" name="guest_name" placeholder="Name"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
+                                </div>
+                                <div id="client_section_regular" class="hidden relative">
+                                    <label for="regular_name"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Search</label>
+                                    <input id="regular_name" name="regular_name" placeholder="Search by name or id"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <ul id="regular_search_result"
+                                        class="cursor-default shadow-md absolute top-full left-0 w-full mt-2 text-gray-700 bg-slate-200 dark:text-white dark:bg-gray-600">
+                                    </ul>
+                                    <div id="regular_info"></div>
+                                </div>
+                                <div id="client_section_new" class="hidden">
+                                    <div class="my-2">
+                                        <label for="new_client_name"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                        <input id="new_client_name" name="new_client_name" placeholder="Name"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    </div>
+                                    <div class="my-2">
+                                        <label for="new_client_phone_number"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                            Number</label>
+                                        <input id="new_client_phone_number" name="new_client_phone_number"
+                                            placeholder="Phone Number"
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="text-3xl font-bold my-2 text-gray-700 dark:text-gray-100">Payment</h1>
+                            <h2 class="text-xl font-bold my-2 text-gray-700 dark:text-gray-100">Payment Status</h2>
+                            <div class="grid gap-4 md:grid-cols-2 my-5">
+                                <div
+                                    class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                    <input checked id="paid" type="radio" value="paid"
+                                        name="payment_status"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="paid"
+                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Paid</label>
+                                </div>
+                                <div
+                                    class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                    <input id="unpaid" type="radio" value="unpaid" name="payment_status"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="unpaid"
+                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Unpaid</label>
+                                </div>
+                            </div>
+                            <div id="payment_status_section">
+                                <div id="payment_status_section_paid">
+                                    <h2 class="text-xl font-bold my-2 text-gray-700 dark:text-gray-100">Payment Method
+                                    </h2>
+                                    <div class="grid gap-4 md:grid-cols-3 my-5">
+                                        <div
+                                            class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                            <input checked id="cash" type="radio" value="cash"
+                                                name="payment_method"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="cash"
+                                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cash</label>
+                                        </div>
+                                        <div
+                                            class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                            <input id="credit_card" type="radio" value="credit_card"
+                                                name="payment_method"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="credit_card"
+                                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Credit
+                                                Card</label>
+                                        </div>
+                                        <div
+                                            class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                            <input id="check" type="radio" value="check"
+                                                name="payment_method"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="check"
+                                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Check</label>
+                                        </div>
+                                    </div>
+                                    <div id="payment_method_section">
+                                        <div id="payment_method_section_cash"></div>
+                                        <div id="payment_method_section_credit_card" class="hidden">
+                                            <div class="my-2">
+                                                <label for="transaction_serial_number"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Transaction
+                                                    Serial Number</label>
+                                                <input id="transaction_serial_number" name="transaction_serial_number"
+                                                    placeholder="Transaction Serial Number"
+                                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                            <div class="my-2">
+                                                <label for="transaction_amount"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Transaction
+                                                    Amount</label>
+                                                <input id="transaction_amount" name="transaction_amount"
+                                                    placeholder="Transaction Amount"
+                                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                        </div>
+                                        <div id="payment_method_section_check" class="hidden">
+                                            <div class="my-2">
+                                                <label for="check_serial_number"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Check
+                                                    Serial Number</label>
+                                                <input id="check_serial_number" name="check_serial_number"
+                                                    placeholder="Transaction ID"
+                                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                            <div class="my-2">
+                                                <label for="check_amount"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Check
+                                                    Amount</label>
+                                                <input id="check_amount" name="check_amount"
+                                                    placeholder="Check Amount"
+                                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="payment_status_section_unpaid" class="h_idden"></div>
+                            </div>
+                            <div class="flex justify-between mt-5">
                                 <button
                                     class="bg-teal-700 hover:bg-teal-600 dark:bg-teal-800 dark:hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="button" onclick="go_to_client();">
-                                    Withdraw
-                                </button>
-                                <button
-                                    class="bg-slate-400 hover:bg-slate-300 dark:bg-slate-600 dark:hover:bg-slate-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                    type="reset">
-                                    Clear
+                                    type="submit">
+                                    Save
                                 </button>
                             </div>
                         </form>
                     </div>
-                    <div class="p-3 bg-slate-100 dark:bg-slate-700 rounded">
-                        <div class="bg-gray-100 shadow dark:bg-gray-800">
-                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <div class="">
+                        <div class="p-5 bg-slate-100 dark:bg-slate-700 rounded shadow">
+                            <h2 class="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-300">Receipt</h2>
+                            <table
+                                class="bg-gray-100 dark:bg-gray-800 min-w-full shadow divide-y divide-gray-200 dark:divide-gray-700">
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -266,6 +364,207 @@
                 }
             }
         });
+    </script>
+    <script>
+        let pay_check_form = document.pay_check;
+        pay_check_form.client_option.forEach(element => {
+            element.addEventListener("change", async () => {
+                await document.querySelectorAll("#client_section > div:not(#client_section_" +
+                    pay_check_form.client_option.value + ")").forEach(async e => {
+                    e.classList.add("hidden");
+                })
+                document.querySelector("#client_section_" + pay_check_form.client_option.value)
+                    .classList.remove("hidden");
+            })
+        });
+        pay_check_form.payment_status.forEach(element => {
+            element.addEventListener("change", async () => {
+                await document.querySelectorAll(
+                    "#payment_status_section > div:not(#payment_status_section_" +
+                    pay_check_form.payment_status.value + ")").forEach(async e => {
+                    e.classList.add("hidden");
+                })
+                document.querySelector("#payment_status_section_" + pay_check_form.payment_status.value)
+                    .classList.remove("hidden");
+                if (pay_check_form.payment_status.value == "unpaid") {
+                    pay_check_form.querySelector("#client_guest").disabled = true;
+                    if (pay_check_form.client_option.value != "regular" && pay_check_form.client_option
+                        .value != "new") {
+                        pay_check_form.querySelector("#client_regular").checked = true;
+                        pay_check_form.querySelector("#client_regular").dispatchEvent(new Event(
+                            'change'));
+                    }
+                } else {
+                    pay_check_form.querySelector("#client_guest").disabled = false;
+                }
+            })
+        });
+        pay_check_form.payment_method.forEach(element => {
+            element.addEventListener("change", async () => {
+                await document.querySelectorAll(
+                    "#payment_method_section > div:not(#payment_method_section_" +
+                    pay_check_form.payment_method.value + ")").forEach(async e => {
+                    e.classList.add("hidden");
+                })
+                document.querySelector("#payment_method_section_" + pay_check_form.payment_method.value)
+                    .classList.remove("hidden");
+            });
+        });
+        // search for regular client
+        function search_for_regular_client() {
+            let regular_search_result = document.getElementById('regular_search_result');
+            let search_query = pay_check_form.regular_name.value;
+            if (search_query == "") {
+                regular_search_result.innerHTML = '';
+                return;
+            }
+            fetch('/clients/search?query=' + search_query)
+                .then(res => res.json())
+                .then(res => {
+                    regular_search_result.innerHTML = '';
+                    localStorage.setItem("clients", JSON.stringify(res));
+                    res.forEach(element => {
+                        regular_search_result.innerHTML +=
+                            `<li class="p-2" data-id="${element.id}">${element.name}</li>`
+                    });
+                });
+            //
+        }
+        pay_check_form.regular_name.addEventListener("input", search_for_regular_client);
+        pay_check_form.regular_name.addEventListener('keydown', function(event) {
+            let li_count = regular_search_result.querySelectorAll('li').length;
+            if (li_count == 0) return;
+            let selected_li = regular_search_result.querySelector(".bg-slate-300.dark\\:bg-gray-500");
+            if (event.code == 'ArrowDown') {
+                if (!selected_li) {
+                    regular_search_result.querySelector('li:first-child').classList.add('bg-slate-300');
+                    regular_search_result.querySelector('li:first-child').classList.add('dark:bg-gray-500');
+                } else {
+                    let i = Array.from(regular_search_result.querySelectorAll('li')).indexOf(selected_li);
+                    i = (i + 1) % li_count + 1;
+                    selected_li.classList.remove('bg-slate-300');
+                    selected_li.classList.remove('dark:bg-gray-500');
+                    regular_search_result.querySelector(`li:nth-child(${i})`).classList.add('bg-slate-300');
+                    regular_search_result.querySelector(`li:nth-child(${i})`).classList.add('dark:bg-gray-500');
+                }
+            } else if (event.code == 'ArrowUp') {
+                if (!selected_li) {
+                    regular_search_result.querySelector('li:last-child').classList.add('bg-slate-300');
+                    regular_search_result.querySelector('li:last-child').classList.add('dark:bg-gray-500');
+                } else {
+                    let i = Array.from(regular_search_result.querySelectorAll('li')).indexOf(selected_li);
+                    i = (i - 1 + li_count) % li_count + 1;
+                    selected_li.classList.remove('bg-slate-300');
+                    selected_li.classList.remove('dark:bg-gray-500');
+                    regular_search_result.querySelector(`li:nth-child(${i})`).classList.add('bg-slate-300');
+                    regular_search_result.querySelector(`li:nth-child(${i})`).classList.add('dark:bg-gray-500');
+                }
+            } else if (event.code == 'Enter') {
+                event.preventDefault();
+                if (selected_li) {
+                    let data_id = selected_li.getAttribute("data-id");
+                    let clients = JSON.parse(localStorage.getItem("clients"));
+                    clients.forEach(element => {
+                        if (element.id == data_id) {
+                            pay_check_form.regular_id.value = element.id;
+                            pay_check_form.regular_name.value = element.name;
+                            regular_search_result.innerHTML = '';
+                            document.getElementById("regular_info").innerHTML = `
+                                        <table class="text-gray-600 dark:text-gray-200">
+                                            <tr>
+                                                <th class="p-3">Name: </th>
+                                                <td class="p-3">${element.name}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th class="p-3">Name: </th>
+                                                <td class="p-3">${element.phone_number}</td>
+                                            </tr>
+                                        </table>
+                            `;
+                            localStorage.setItem('clients', null);
+                        }
+                    });
+                }
+            }
+        });
+        //select client by click
+        regular_search_result.addEventListener('click', function(event) {
+            if (event.target.matches('li')) {
+                let data_id = event.target.getAttribute("data-id");
+                let clients = JSON.parse(localStorage.getItem("clients"));
+                clients.forEach(element => {
+                    if (element.id == data_id) {
+                        pay_check_form.regular_id.value = element.id;
+                        pay_check_form.regular_name.value = element.name;
+                        regular_search_result.innerHTML = '';
+                        document.getElementById("regular_info").innerHTML = `
+                                        <table class="text-gray-600 dark:text-gray-200">
+                                            <tr>
+                                                <th class="p-3">Name: </th>
+                                                <td class="p-3">${element.name}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th class="p-3">Name: </th>
+                                                <td class="p-3">${element.phone_number}</td>
+                                            </tr>
+                                        </table>
+                            `;
+                        localStorage.setItem('clients', null);
+                    }
+                });
+            }
+        })
+        // Pay Receipt
+        function submit_form() {
+            let client_option = pay_check_form.client_option.value;
+            if (client_option == 'regular') {
+                if (pay_check_form.regular_id.value == "") {
+                    alert("Please select a client !");
+                    pay_check_form.regular_name.focus();
+                    return false;
+                }
+            }
+            if (client_option == 'new') {
+                if (pay_check_form.new_client_name.value == "") {
+                    alert("Please enter the new client name !");
+                    pay_check_form.new_client_name.focus();
+                    return false;
+                }
+                if (pay_check_form.new_client_phone_number.value == "") {
+                    alert("Please enter the new client phone number !");
+                    pay_check_form.new_client_phone_number.focus();
+                    return false;
+                }
+            }
+            if (pay_check_form.payment_status.value == "paid") {
+                let payment_method = pay_check_form.payment_method.value;
+                if (payment_method == "credit_card") {
+                    if (pay_check_form.transaction_serial_number.value == "") {
+                        alert("Please enter the transaction serial number !");
+                        pay_check_form.transaction_serial_number.focus();
+                        return false;
+                    }
+                    if (pay_check_form.transaction_amount.value == "") {
+                        alert("Please enter the transaction Amount !");
+                        pay_check_form.transaction_amount.focus();
+                        return false;
+                    }
+                } else if (payment_method == "check") {
+                    if (pay_check_form.check_serial_number.value == "") {
+                        alert("Please enter the check serial number !");
+                        pay_check_form.check_number.focus();
+                        return false;
+                    } else if (pay_check_form.check_amount.value == "") {
+                        alert("Please enter the check amount !");
+                        pay_check_form.check_amount.focus();
+                        return false;
+                    }
+                }
+            }
+            return confirm("Do you confirm this data ?");
+        }
     </script>
 </body>
 

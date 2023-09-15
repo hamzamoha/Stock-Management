@@ -2,28 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- Styles -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js"
-        integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
-                '(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    @include('head')
 </head>
 
 <body class="antialiased">
@@ -102,6 +82,12 @@
                                         Receipt Date</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Payment Method</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Total</th>
                                 </tr>
                             </thead>
@@ -114,7 +100,7 @@
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                             <div
-                                                class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 dark:bg-cyan-500 bg-purple-500 text-purple-900 dark:text-cyan-700 rounded-full">
+                                                class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 dark:bg-cyan-500 bg-purple-500 text-purple-900 dark:text-cyan-700 rounded-full">
                                                 <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4 mr-2"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -136,8 +122,8 @@
                                                     <path
                                                         d="M20 10V7C20 5.89543 19.1046 5 18 5H6C4.89543 5 4 5.89543 4 7V10M20 10V19C20 20.1046 19.1046 21 18 21H6C4.89543 21 4 20.1046 4 19V10M20 10H4M8 3V7M16 3V7"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                                    <rect x="6" y="12" width="3"
-                                                        height="3" rx="0.5" fill="currentColor" />
+                                                    <rect x="6" y="12" width="3" height="3"
+                                                        rx="0.5" fill="currentColor" />
                                                     <rect x="10.5" y="12" width="3"
                                                         height="3" rx="0.5" fill="currentColor" />
                                                     <rect x="15" y="12" width="3"
@@ -145,6 +131,16 @@
                                                 </svg>
                                                 {{ date('D d M Y', strtotime($receipt->created_at)) }}
                                             </div>
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                            <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full {{ $receipt->status == 'unpaid' ? "dark:bg-red-400 bg-red-500 text-red-900 dark:text-red-700" : "dark:bg-emerald-500 bg-green-500 text-green-900 dark:text-emerald-800"}}">
+                                                {{ $receipt->status }}
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                            {{ $receipt->payment_method ? $receipt->payment_method : 'Not Specified' }}
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
