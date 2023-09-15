@@ -17,7 +17,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::paginate(10);
+        $stocks = Stock::where("quantity", ">", "0")->orderBy('id', 'DESC')->paginate(10);
         return view('stock')->with('stocks', $stocks);
     }
 
@@ -109,6 +109,7 @@ class StockController extends Controller
         foreach ($request as $foxit) {
             $stock = Stock::find($foxit["id"]);
             if ($stock && $stock->name == $foxit["name"] && $stock->buy_price == $foxit["buy_price"] && intval($stock->quantity) >= intval($foxit["quantity"])) {
+                if( intval($foxit["quantity"]) <= 0) continue;
                 array_push($backup, $stock);
                 $stock->quantity = intval($stock->quantity) - intval($foxit["quantity"]);
                 if (!$stock->save()) {
@@ -151,7 +152,7 @@ class StockController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $result = Stock::where('name', 'like', "%$query%")->take(3)->get();
+        $result = Stock::inRandomOrder()->where('name', 'like', "%$query%")->take(3)->get();
         return response()->json($result);
     }
 }

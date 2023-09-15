@@ -134,54 +134,151 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                            <div class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full {{ $receipt->status == 'unpaid' ? "dark:bg-red-400 bg-red-500 text-red-900 dark:text-red-700" : "dark:bg-emerald-500 bg-green-500 text-green-900 dark:text-emerald-800"}}">
+                                            <div
+                                                class="text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full {{ $receipt->status == 'unpaid' ? 'dark:bg-red-400 bg-red-500 text-red-900 dark:text-red-700' : 'dark:bg-emerald-500 bg-green-500 text-green-900 dark:text-emerald-800' }}">
                                                 {{ $receipt->status }}
                                             </div>
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                            {{ $receipt->payment_method ? $receipt->payment_method : 'Not Specified' }}
+                                            @if ($receipt->payment_method == 'credit_card')
+                                                <div
+                                                    class="rounded-full bg-sky-500 text-sky-800 text-xs font-bold inline-block py-1 px-2">
+                                                    <svg viewBox="0 2 24 24" fill="none" class="h-4 w-4 inline"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                            stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <path
+                                                                d="M3 9H21M7 15H9M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z"
+                                                                stroke="currentColor" stroke-width="3"
+                                                                stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Credit Card
+                                                </div>
+                                            @else
+                                                @if ($receipt->payment_method == 'check')
+                                                    <div
+                                                        class="rounded-full bg-slate-400 text-slate-700 text-xs font-bold inline-block py-1 px-2">
+                                                        <svg fill="currentColor" viewBox="0 0 640.00 640.00"
+                                                            class="w-4 h-4 inline" xmlns="http://www.w3.org/2000/svg"
+                                                            stroke-width="0">
+                                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                stroke-linejoin="round"></g>
+                                                            <g id="SVGRepo_iconCarrier">
+                                                                <path
+                                                                    d="M608 32H32C14.33 32 0 46.33 0 64v384c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V64c0-17.67-14.33-32-32-32zM176 327.88V344c0 4.42-3.58 8-8 8h-16c-4.42 0-8-3.58-8-8v-16.29c-11.29-.58-22.27-4.52-31.37-11.35-3.9-2.93-4.1-8.77-.57-12.14l11.75-11.21c2.77-2.64 6.89-2.76 10.13-.73 3.87 2.42 8.26 3.72 12.82 3.72h28.11c6.5 0 11.8-5.92 11.8-13.19 0-5.95-3.61-11.19-8.77-12.73l-45-13.5c-18.59-5.58-31.58-23.42-31.58-43.39 0-24.52 19.05-44.44 42.67-45.07V152c0-4.42 3.58-8 8-8h16c4.42 0 8 3.58 8 8v16.29c11.29.58 22.27 4.51 31.37 11.35 3.9 2.93 4.1 8.77.57 12.14l-11.75 11.21c-2.77 2.64-6.89 2.76-10.13.73-3.87-2.43-8.26-3.72-12.82-3.72h-28.11c-6.5 0-11.8 5.92-11.8 13.19 0 5.95 3.61 11.19 8.77 12.73l45 13.5c18.59 5.58 31.58 23.42 31.58 43.39 0 24.53-19.05 44.44-42.67 45.07zM416 312c0 4.42-3.58 8-8 8H296c-4.42 0-8-3.58-8-8v-16c0-4.42 3.58-8 8-8h112c4.42 0 8 3.58 8 8v16zm160 0c0 4.42-3.58 8-8 8h-80c-4.42 0-8-3.58-8-8v-16c0-4.42 3.58-8 8-8h80c4.42 0 8 3.58 8 8v16zm0-96c0 4.42-3.58 8-8 8H296c-4.42 0-8-3.58-8-8v-16c0-4.42 3.58-8 8-8h272c4.42 0 8 3.58 8 8v16z">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                        Check
+                                                    </div>
+                                                @else
+                                                    @if ($receipt->payment_method == 'cash')
+                                                        <div
+                                                            class="rounded-full bg-teal-500 text-teal-800 text-xs font-bold inline-block py-1 px-2">
+                                                            <svg viewBox="50 60 280 280" fill="none"
+                                                                class="w-4 h-4 inline"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                                    stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <path
+                                                                        d="M303.126 136.208C281.015 132.778 265.08 104.845 246.318 98.0984C244.081 97.2946 232.069 107.635 229.8 109.141C197.375 130.656 162.319 147.633 129.719 168.977C122.439 173.743 85.8024 187.889 83.1465 196.481C82.674 198.014 82.5844 200.212 83.1465 200.322C91.5257 201.965 100.174 208.769 107.257 213.499C111.791 216.526 151.723 247.346 155.006 244.84C189.824 218.255 264.876 166.587 305.77 140.126"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                    <path
+                                                                        d="M312.312 160.424C262.454 184.856 195.245 257.231 155.602 278.601C153.826 279.558 139.956 268.042 137.675 266.812C123.434 259.133 110.102 248.85 97.7998 237.996"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                    <path
+                                                                        d="M317 184.071C304.217 178.343 169.407 306.551 156.375 300.919C143.344 295.288 116.401 273.745 100.319 261.358"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                    <path
+                                                                        d="M188.842 155.443C219.671 118.612 245.085 191.932 193.136 184.294C182.431 182.721 176.52 159.313 184.875 153.304"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                    <path
+                                                                        d="M119.806 192.842C125.346 200.295 129.325 195.187 139.627 187.5"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                    <path
+                                                                        d="M263.16 144.401C268.505 140.996 264.15 143.816 264.15 137.28"
+                                                                        stroke="currentColor"
+                                                                        stroke-width="25" stroke-linecap="round"
+                                                                        stroke-linejoin="round"></path>
+                                                                </g>
+                                                            </svg>
+                                                            Cash
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            @endif
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                            {{ $receipt->total . ' ' . env('CURRENCY', 'MAD') }}</td>
+                                            {{ $receipt->total . ' ' . env('CURRENCY', 'MAD') }} </td>
                                     </tr>
                                 @endforeach
                                 <!-- Add more rows for each stock in your inventory -->
                             </tbody>
                         </table>
-                        <nav aria-label="Page navigation example" class="text-center py-2">
-                            <ul class="inline-flex -space-x-px">
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page"
-                                        class="block px-3 py-2 leading-tight text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+
+                        @if ($receipts->hasPages())
+                            <div class="sm:flex-1 sm:flex sm:items-center sm:justify-center">
+                                <div>
+                                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                                        {{-- Previous Page Link --}}
+                                        @if (!$receipts->onFirstPage())
+                                            <a href="{{ $receipts->previousPageUrl() }}" rel="prev"
+                                                class="block px-2 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                                aria-label="{{ __('pagination.previous') }}">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </a>
+                                        @endif
+
+                                        {{-- Pagination Elements --}}
+                                        @for ($i = 1; $i <= $receipts->lastPage(); $i++)
+                                            @if ($i == $receipts->currentPage())
+                                                <span
+                                                    class="block px-3 py-2 leading-tight text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $i }}</span>
+                                            @else
+                                                <a href="{{ $receipts->url($i) }}"
+                                                    class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $i }}</a>
+                                            @endif
+                                        @endfor
+
+
+                                        {{-- Next Page Link --}}
+                                        @if ($receipts->hasMorePages())
+                                            <a href="{{ $receipts->nextPageUrl() }}" rel="next"
+                                                class="block px-2 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                                aria-label="{{ __('pagination.next') }}">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </a>
+                                        @endif
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

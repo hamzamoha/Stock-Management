@@ -14,7 +14,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $receipts = Receipt::paginate(50);
+        $receipts = Receipt::orderBy('id', 'DESC')->paginate(25);
         return view("receipt.index")->with("receipts", $receipts);
     }
 
@@ -69,7 +69,7 @@ class ReceiptController extends Controller
             if ($receipt->payment_method == "credit_card") {
                 DB::table('cc_transactions')->insert([
                     'serial_number' => $request->input("transaction_serial_number"),
-                    'transaction_amount' => $request->input("transaction_amount"),
+                    'amount' => $request->input("transaction_amount"),
                     'receipt_id' => $receipt->id,
                 ]);
             } else if ($receipt->payment_method == "check") {
