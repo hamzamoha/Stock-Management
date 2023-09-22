@@ -18,6 +18,18 @@ class ReceiptController extends Controller
         return view("receipt.index")->with("receipts", $receipts);
     }
 
+    public function cc_transactions_index()
+    {
+        $transactions = DB::table("cc_transactions")->orderBy('id', 'DESC')->paginate(25);
+        return view("cc_transactions")->with("transactions", $transactions);
+    }
+
+    public function checks_index()
+    {
+        $checks = DB::table("checks")->orderBy('id', 'DESC')->paginate(25);
+        return view("checks")->with("checks", $checks);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -44,13 +56,13 @@ class ReceiptController extends Controller
         if (Client::where("phone_number", $request->input("new_client_phone_number"))->exists()) {
             return redirect()->back()->withErrors(["error" => "Client phone number already exists !"]);
         }
-        if (!in_array($request->input("client_option") , ["guest", "regular", "new"])) {
+        if (!in_array($request->input("client_option"), ["guest", "regular", "new"])) {
             return redirect()->back()->withErrors(["error" => "Client option error !"]);
         }
         if (!in_array($request->input("payment_method"), ["credit_card", "check", "cash"])) {
             return redirect()->back()->withErrors(["error" => "Payment method error !"]);
         }
-        if (!in_array($request->input("payment_status") , ["paid", "unpaid"])) {
+        if (!in_array($request->input("payment_status"), ["paid", "unpaid"])) {
             return redirect()->back()->withErrors(["error" => "Payment Status error !"]);
         }
         if ($request->input("client_option") == "new") {
@@ -87,8 +99,10 @@ class ReceiptController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receipt $receipt)
+    public function show(int $receipt_id)
     {
+        $receipt = Receipt::find($receipt_id);
+        if ($receipt) return view("receipt.show")->with("receipt", $receipt);
         //
     }
 
@@ -124,7 +138,8 @@ class ReceiptController extends Controller
         //
     }
 
-    function search_clients(Request $request) {
+    function search_clients(Request $request)
+    {
         $query = $request->input('query');
         $result = Client::where('name', 'like', "%$query%")->take(3)->get();
         return response()->json($result);

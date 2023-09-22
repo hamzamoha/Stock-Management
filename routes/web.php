@@ -34,6 +34,12 @@ Route::post('/withdraw', [StockController::class, 'withdraw']);
 
 Route::get('/receipts', [ReceiptController::class, 'index']);
 
+Route::get('/receipts/{receipt_id}', [ReceiptController::class, 'show']);
+
 Route::get('/withdraw/{receipt_id}', [ReceiptController::class, 'pay']);
 
 Route::post('/withdraw/{receipt_id}', [ReceiptController::class, 'store']);
+
+Route::get('/cc_transactions', [ReceiptController::class, 'cc_transactions_index']);
+
+Route::get('/checks', [ReceiptController::class, 'checks_index']);

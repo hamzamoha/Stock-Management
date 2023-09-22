@@ -57,7 +57,7 @@
                         <div
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                             <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                                class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
                                 </path>
@@ -72,20 +72,21 @@
                         class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
                         <div
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                            <svg width="30" height="30" fill="currentColor" viewBox="0 -2 1028 1028" stroke="currentColor"
-                                class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                            <svg width="30" height="30" fill="currentColor" viewBox="-5 -5 32 32"
+                                stroke="currentColor"
+                                class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                                 <path
-                                    d="M91.448447 896c-50.086957 0-91.428571-40.546584-91.428571-91.428571V91.428571C0.019876 41.341615 40.56646 0 91.448447 0h671.006211c50.086957 0 91.428571 40.546584 91.428572 91.428571v337.093168l-3.180124-0.795031c-13.515528-3.975155-26.236025-5.565217-40.546584-5.565217h-0.795031l-0.795031-2.385093h-2.385094V91.428571c0-23.055901-20.670807-43.726708-43.726708-43.726708H91.448447c-23.055901 0-43.726708 20.670807-43.726708 43.726708v713.142858c0 23.055901 20.670807 43.726708 43.726708 43.726708h352.198758l0.795031 0.795031c8.745342 11.925466 3.975155 20.670807 0.795031 27.031056-3.180124 5.565217-4.770186 9.540373 0.795031 15.10559l4.770186 4.770186H91.448447z"
-                                    fill=""></path>
+                                    d="M2 21C1 21 0 20 0 19V2C0 1 1 0 2 0H17.8693C18.8693 0 19.8693 1 19.8693 2V10H18.8693V2C18.8693 1 17.8693 1 17.8693 1H2C2 1 1 1 1 2V19C1 19 1 20 2 20H10L11 21Z">
+                                </path>
                                 <path
-                                    d="M143.125466 174.906832c-8.745342 0-15.900621-11.130435-15.900621-24.645962 0-13.515528 7.15528-24.645963 15.900621-24.645963h270.310559c8.745342 0 15.900621 11.130435 15.900621 24.645963 0 13.515528-7.15528 24.645963-15.900621 24.645962h-270.310559z"
-                                    fill=""></path>
+                                    d="M3.3348 4.0753C3.131 4.0753 2.9643 3.816 2.9643 3.501 2.9643 3.1861 3.131 2.9267 3.3348 2.9267H9.633C9.8368 2.9267 10.0035 3.186 10.0035 3.501 10.0035 3.8159 9.8368 4.0753 9.633 4.0753H3.3348Z">
+                                </path>
                                 <path
-                                    d="M413.436025 128h-270.310559c-7.15528 0-13.515528 9.540373-13.515528 22.26087s6.360248 22.26087 13.515528 22.260869h270.310559c7.15528 0 13.515528-9.540373 13.515528-22.260869s-5.565217-22.26087-13.515528-22.26087zM139.945342 302.111801c-7.15528 0-12.720497-10.335404-12.720497-24.645962s5.565217-24.645963 12.720497-24.645963h193.987577c7.15528 0 12.720497 10.335404 12.720497 24.645963s-5.565217 24.645963-12.720497 24.645962H139.945342z"
-                                    fill=""></path>
+                                    d="M3.2607 7.0392C3.094 7.0392 2.9643 6.7984 2.9643 6.4649S3.094 5.8906 3.2607 5.8906H7.7806C7.9473 5.8906 8.077 6.1314 8.077 6.4649S7.9473 7.0392 7.7806 7.0392H3.2607Z">
+                                </path>
                                 <path
-                                    d="M333.932919 255.204969H139.945342c-5.565217 0-9.540373 9.540373-9.540373 22.26087s3.975155 22.26087 9.540373 22.260869h193.987577c5.565217 0 9.540373-9.540373 9.540373-22.260869s-4.770186-22.26087-9.540373-22.26087zM734.628571 1024c-27.826087 0-58.037267-1.590062-96.993788-4.770186-56.447205-4.770186-108.124224-31.006211-158.211181-79.503106L253.634783 718.708075c-52.47205-50.881988-54.857143-117.664596-7.950311-168.546584 19.875776-20.670807 50.881988-33.391304 84.273292-33.391305 33.391304 0 63.602484 12.720497 82.68323 34.981367 0.795031 0.795031 2.385093 2.385093 5.565217 3.975155 0.795031 0.795031 2.385093 1.590062 3.180124 2.385093V451.57764v-52.47205c0-40.546584 0-81.888199 0.795031-122.434783 0.795031-60.42236 47.701863-106.534161 109.714286-106.534161h0.795031c59.627329 0 104.944099 43.726708 108.124224 103.354037 0.795031 13.515528 0.795031 27.826087 0 42.136646v18.285714h11.925466c41.341615 0 73.142857 14.310559 96.198757 44.52174 0.795031 1.590062 5.565217 3.180124 11.925466 3.180124 2.385093 0 4.770186 0 6.360249-0.795031 7.15528-0.795031 14.310559-1.590062 20.670807-1.590062 31.801242 0 59.627329 12.720497 83.478261 38.956521 3.975155 3.975155 12.720497 7.15528 20.670807 7.15528h3.180125c5.565217-0.795031 11.925466-1.590062 17.490683-1.590062 59.627329 0 107.329193 42.136646 108.124224 96.993789 2.385093 100.968944 3.975155 200.347826-7.15528 298.931677-13.515528 119.254658-77.118012 182.857143-201.142857 198.757764-23.055901 3.975155-49.291925 5.565217-77.913044 5.565217zM325.982609 562.086957c-16.695652 0-32.596273 6.360248-44.521739 17.490683-14.310559 14.310559-22.26087 31.006211-22.26087 49.291925 0 19.080745 8.745342 38.161491 24.645963 54.062112l30.21118 30.21118c65.987578 65.192547 134.360248 131.975155 202.732919 197.962733 33.391304 31.801242 71.552795 52.47205 113.689441 60.42236 32.596273 6.360248 65.192547 9.540373 96.993789 9.540373 28.621118 0 57.242236-2.385093 85.068323-7.950311 100.968944-18.285714 147.080745-66.782609 156.621118-160.596273 8.745342-89.838509 7.950311-182.062112 6.360248-271.10559v-14.310559c-0.795031-32.596273-23.850932-54.857143-56.447205-54.857143-8.745342 0-16.695652 1.590062-25.440993 4.770187V601.043478c0 11.130435 0 32.596273-22.26087 32.596274h-0.795031c-7.15528 0-12.720497-1.590062-15.900621-5.565218-6.360248-6.360248-7.15528-18.285714-7.15528-27.826087v-4.770186c0-36.571429 0.795031-73.937888 0-111.304348-0.795031-32.596273-23.850932-55.652174-55.652174-55.652174-7.950311 0-15.900621 1.590062-23.0559 3.975155v128.795031c0 11.130435-2.385093 19.875776-7.950311 25.440994-3.975155 3.975155-9.540373 6.360248-16.695652 6.360249h-0.795031c-21.465839-0.795031-21.465839-23.055901-21.465838-31.006211v-52.47205-66.782609c0-15.10559-6.360248-31.006211-18.285715-42.931677-11.130435-11.130435-26.236025-17.490683-41.341615-17.490683-6.360248 0-13.515528 0.795031-19.875776 3.180124V442.832298c0 27.031056 0 55.652174-1.590062 83.478261-0.795031 7.15528-7.15528 12.720497-13.515528 18.285714-2.385093 2.385093-5.565217 4.770186-7.950311 7.15528l-2.385093 2.385093-1.590062-3.975155c-1.590062-2.385093-3.975155-4.770186-6.360248-6.360249-4.770186-5.565217-10.335404-11.130435-13.515528-17.490683-2.385093-4.770186-1.590062-10.335404-1.590062-15.10559v-6.360249-69.167701c0-50.881988 0-103.354037-0.795032-155.031056 0-38.161491-24.645963-63.602484-60.42236-64.397516-38.956522 0-65.192547 27.826087-65.192546 68.372671v374.459627l-10.335404 6.360249-0.795031-1.590062c-7.15528-7.950311-15.10559-15.900621-22.26087-23.850932-16.695652-17.490683-34.186335-36.571429-51.677018-54.062112-15.900621-15.10559-35.776398-23.850932-56.447205-23.850931z"
-                                    fill=""></path>
+                                    d="M17.1168 23.8592C16.4685 23.8592 15.7645 23.8222 14.8568 23.7481 13.5416 23.637 12.3375 23.0257 11.1705 21.8957L5.9097 16.7459C4.6871 15.5603 4.6315 14.0043 5.7245 12.8188 6.1876 12.3372 6.9101 12.0408 7.6881 12.0408 8.4661 12.0408 9.17 12.3372 9.6146 12.8559 9.6331 12.8744 9.6702 12.9115 9.7443 12.9485 9.7628 12.967 9.7999 12.9855 9.8184 13.0041V10.5218 9.2992C9.8184 8.3545 9.8184 7.3912 9.8369 6.4465 9.8554 5.0387 10.9484 3.9643 12.3932 3.9643H12.4117C13.801 3.9643 14.8569 4.9831 14.931 6.3724 14.9495 6.6873 14.9495 7.0207 14.931 7.3542V7.7803H15.2089C16.1722 7.7803 16.9131 8.1137 17.4503 8.8177 17.4688 8.8547 17.58 8.8918 17.7282 8.8918 17.7838 8.8918 17.8393 8.8918 17.8764 8.8733 18.0431 8.8548 18.2098 8.8363 18.358 8.8363 19.099 8.8363 19.7473 9.1327 20.303 9.744 20.3956 9.8366 20.5994 9.9107 20.7846 9.9107H20.8587C20.9884 9.8922 21.1366 9.8737 21.2662 9.8737 22.6555 9.8737 23.767 10.8555 23.7855 12.1337 23.8411 14.4863 23.8781 16.8018 23.6188 19.0988 23.3039 21.8774 21.822 23.3594 18.9322 23.7299 18.395 23.8225 17.7837 23.8596 17.1168 23.8596ZM7.5954 13.0966C7.2064 13.0966 6.8359 13.2448 6.558 13.5041 6.2246 13.8375 6.0393 14.2265 6.0393 14.6526 6.0393 15.0972 6.2431 15.5418 6.6136 15.9122L7.3175 16.6161C8.855 18.1351 10.4481 19.6911 12.0412 21.2286 12.8192 21.9696 13.7084 22.4512 14.6902 22.6364 15.4497 22.7846 16.2092 22.8587 16.9502 22.8587 17.6171 22.8587 18.2839 22.8031 18.9323 22.6735 21.2849 22.2474 22.3593 21.1175 22.5816 18.9316 22.7854 16.8384 22.7668 14.6896 22.7298 12.6148V12.2814C22.7113 11.5219 22.1741 11.0032 21.4146 11.0032 21.2108 11.0032 21.0256 11.0402 20.8218 11.1143V14.0043C20.8218 14.2636 20.8218 14.7638 20.3031 14.7638H20.2846C20.1179 14.7638 19.9882 14.7268 19.9141 14.6341 19.7659 14.4859 19.7474 14.208 19.7474 13.9858V13.8747C19.7474 13.0226 19.7659 12.1519 19.7474 11.2813 19.7289 10.5218 19.1917 9.9846 18.4507 9.9846 18.2655 9.9846 18.0802 10.0216 17.9135 10.0772V13.0781C17.9135 13.3374 17.8579 13.5412 17.7283 13.6709 17.6357 13.7635 17.506 13.8191 17.3393 13.8191H17.3208C16.8206 13.8006 16.8206 13.2819 16.8206 13.0967V11.8741 10.3181C16.8206 9.9661 16.6724 9.5957 16.3945 9.3178 16.1352 9.0585 15.7832 8.9103 15.4312 8.9103 15.283 8.9103 15.1163 8.9288 14.9681 8.9844V10.318C14.9681 10.9478 14.9681 11.6147 14.9311 12.263 14.9126 12.4297 14.7644 12.5594 14.6162 12.6891 14.5606 12.7447 14.4865 12.8002 14.431 12.8558L14.3754 12.9114 14.3384 12.8188C14.3014 12.7632 14.2458 12.7077 14.1902 12.6706 14.0791 12.5409 13.9494 12.4113 13.8753 12.2631 13.8197 12.152 13.8383 12.0223 13.8383 11.9111V11.7629 10.1513C13.8383 8.9657 13.8383 7.7432 13.8198 6.5391 13.8198 5.6499 13.2455 5.0572 12.412 5.0386 11.5043 5.0386 10.893 5.6869 10.893 6.6317V15.3566L10.6522 15.5048 10.6337 15.4678C10.467 15.2826 10.2817 15.0973 10.115 14.9121 9.726 14.5046 9.3185 14.06 8.9109 13.6525 8.5404 13.3005 8.0773 13.0968 7.5957 13.0968Z">
+                                </path>
                             </svg>
                         </div>
                         <div class="text-right">
@@ -97,7 +98,7 @@
                         class="bg-purple-500 dark:bg-purple-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-purple-600 dark:border-purple-600 text-white font-medium group">
                         <div
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-                            <svg class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"
+                            <svg class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out"
                                 viewBox="0 0 32 32" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -123,7 +124,7 @@
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                             <svg width="30" height="30" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                                class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                 </path>
@@ -142,7 +143,7 @@
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                             <svg width="30" height="30" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                                class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                 <g id="SVGRepo_iconCarrier">
@@ -166,7 +167,7 @@
                             class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                             <svg width="30" height="30" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor"
-                                class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
+                                class="stroke-current text-black dark:text-gray-800 transform transition-transform duration-500 ease-in-out">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
@@ -178,63 +179,97 @@
                     </div>
                 </div>
                 <div class="flex py-4">
-                    <div class="w-1/2"><canvas id="acquisitions"></canvas></div>
-                    <div class="w-1/2"><canvas id="profit"></canvas></div>
+                    <div class="w-1/2 p-3"><canvas class="rounded-xl bg-slate-100 dark:bg-slate-800"
+                            id="acquisitions"></canvas></div>
+                    <div class="w-1/2 p-3"><canvas class="rounded-xl bg-slate-100 dark:bg-slate-800"
+                            id="profit"></canvas></div>
                 </div>
             </div>
         </main>
     </div>
     <script async>
-        (async function() {
-            const data = JSON.parse(`{!! $charts_data !!}`);
-
-            new Chart(
-                document.getElementById('acquisitions'), {
-                    type: 'bar',
-                    data: {
-                        labels: data.map(row => row.new_date),
-                        datasets: [{
-                            label: 'Sales per Month',
-                            data: data.map(row => row.big_total)
-                        }]
-                    }
+        (async ()=>{
+        const acquisitions_data = JSON.parse(`{!! $charts_data !!}`)
+        const profit_data = JSON.parse(`{!! $charts_data2 !!}`)
+        const options = {
+            events: [],
+            layout: {
+                padding: 20
+            },
+            scales: {
+                y: {
+                    offset: true,
+                    display: false
                 }
-            );
-        })();
-        (async function() {
-            const data = JSON.parse(`{!! $charts_data2 !!}`);
-            
-            new Chart(
-                document.getElementById('profit'), {
-                    type: 'bar',
-                    data: {
-                        labels: data.map(row => row.new_date),
-                        datasets: [{
-                            label: 'Profit per Month',
-                            data: data.map(row => row.big_profit),
-                            borderColor: 'rgba(0, 100, 0, 0.5)',
-                            backgroundColor: 'rgba(100, 238, 100, 0.5)',
-                        }]
-                    },
-                    options: {
-                        animations: {
-                            tension: {
-                                duration: 1000,
-                                easing: 'linear',
-                                from: 1,
-                                to: 0,
-                                loop: true
-                            }
-                        },
-                        plugins: {
-                            colors: {
-                                enabled: true
-                            }
-                        }
-                    }
+            },
+            responsive: true,
+            animations: {
+                tension: {
+                    duration: 1000,
+                    easing: 'linear',
+                    from: .6,
+                    to: .1,
+                    loop: true
                 }
-            );
-        })();
+            },
+            plugins: {
+                colors: {
+                    enabled: true
+                }
+            },
+            animation: {
+                onComplete: function(e) {
+                    const chartInstance = e.chart,
+                        ctx = chartInstance.ctx,
+                        getX = (o) => (chartInstance.data.datasets[0].data._chartjs.listeners[0]
+                            .getMeta().data[o].x),
+                        getY = (o) => (chartInstance.data.datasets[0].data._chartjs.listeners[0]
+                            .getMeta().data[o].y);
+                    console.log(chartInstance);
+                    ctx.font = Chart.helpers.fontString(14, Chart.defaults
+                        .font.style, Chart.defaults.font.family);
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillStyle = "#000000"
+                    chartInstance.data.datasets[0].data.forEach(function(dataset, i) {
+                        ctx.fillText(dataset + ` {{ env("CURRENCY_SYMBOL", "$") }}`, getX(i), getY(i) - 5);
+                    });
+                }
+            }
+        }
+        const acquisitions_chart = await new Chart(
+            document.getElementById('profit'), {
+                type: 'bar',
+                data: {
+                    labels: profit_data.map(row => row.new_date),
+                    datasets: [{
+                        label: 'Profit per Month',
+                        data: profit_data.map(row => row.big_profit),
+                        borderColor: 'rgba(0, 100, 0, 0.5)',
+                        backgroundColor: 'rgba(100, 238, 100, 0.5)',
+                        barThickness: 50,
+                    }]
+                },
+                options: options,
+            }
+        );
+        const profit_chart = await new Chart(
+            document.getElementById('acquisitions'), {
+                type: 'bar',
+                data: {
+                    labels: acquisitions_data.map(row => row.new_date),
+                    datasets: [{
+                        label: 'Sales per Month',
+                        data: acquisitions_data.map(row => row.big_total),
+                        borderColor: 'rgba(0, 0, 100, 0.5)',
+                        backgroundColor: 'rgba(0, 100, 238, 0.5)',
+                        barThickness: 50
+                    }]
+                },
+                options: options,
+            }
+        );
+    })()
     </script>
     <script>
         const sidebar = document.querySelector("aside");
@@ -242,7 +277,6 @@
         const miniSidebar = document.querySelector(".mini")
         const roundout = document.querySelector(".roundout")
         const maxToolbar = document.querySelector(".max-toolbar")
-        const logo = document.querySelector('.logo')
         const content = document.querySelector('.content')
         const moon = document.querySelector(".moon")
         const sun = document.querySelector(".sun")
@@ -270,7 +304,6 @@
                 miniSidebar.classList.add("hidden")
                 maxToolbar.classList.add("translate-x-0")
                 maxToolbar.classList.remove("translate-x-24", "scale-x-0")
-                logo.classList.remove("ml-12")
                 content.classList.remove("ml-12")
                 content.classList.add("ml-12", "md:ml-60")
             } else {
@@ -283,7 +316,6 @@
                 miniSidebar.classList.remove("hidden")
                 maxToolbar.classList.add("translate-x-24", "scale-x-0")
                 maxToolbar.classList.remove("translate-x-0")
-                logo.classList.add('ml-12')
                 content.classList.remove("ml-12", "md:ml-60")
                 content.classList.add("ml-12")
             }
